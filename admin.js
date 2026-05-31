@@ -520,27 +520,31 @@ document.querySelector("[data-add-post]").addEventListener("click", () => {
 });
 
 pitEditor.addEventListener("click", (event) => {
+  const action = event.target.closest("[data-pit-up], [data-pit-down], [data-pit-delete]");
+  if (!action) return;
   const card = event.target.closest("[data-pit-index]");
   if (!card) return;
   collectBasicFields();
   collectEditors();
   const index = Number(card.dataset.pitIndex);
-  if (event.target.matches("[data-pit-up]")) moveItem(draft.pitList, index, -1);
-  if (event.target.matches("[data-pit-down]")) moveItem(draft.pitList, index, 1);
-  if (event.target.matches("[data-pit-delete]")) draft.pitList.splice(index, 1);
+  if (action.matches("[data-pit-up]")) moveItem(draft.pitList, index, -1);
+  if (action.matches("[data-pit-down]")) moveItem(draft.pitList, index, 1);
+  if (action.matches("[data-pit-delete]")) draft.pitList.splice(index, 1);
   renderPitEditor();
 });
 
 socialEditor.addEventListener("click", (event) => {
+  if (handleIconClear(event, "social")) return;
+  const action = event.target.closest("[data-social-up], [data-social-down], [data-social-delete]");
+  if (!action) return;
   const card = event.target.closest("[data-social-index]");
   if (!card) return;
-  if (handleIconClear(event, "social")) return;
   collectBasicFields();
   collectEditors();
   const index = Number(card.dataset.socialIndex);
-  if (event.target.matches("[data-social-up]")) moveItem(draft.socialLinks, index, -1);
-  if (event.target.matches("[data-social-down]")) moveItem(draft.socialLinks, index, 1);
-  if (event.target.matches("[data-social-delete]")) draft.socialLinks.splice(index, 1);
+  if (action.matches("[data-social-up]")) moveItem(draft.socialLinks, index, -1);
+  if (action.matches("[data-social-down]")) moveItem(draft.socialLinks, index, 1);
+  if (action.matches("[data-social-delete]")) draft.socialLinks.splice(index, 1);
   renderSocialEditor();
 });
 
@@ -549,21 +553,23 @@ socialEditor.addEventListener("change", async (event) => {
 });
 
 postEditor.addEventListener("click", (event) => {
+  if (handleIconClear(event, "post")) return;
+  const action = event.target.closest("[data-post-up], [data-post-down], [data-post-copy], [data-post-delete]");
+  if (!action) return;
   const card = event.target.closest("[data-post-index]");
   if (!card) return;
-  if (handleIconClear(event, "post")) return;
   collectBasicFields();
   collectEditors();
   const index = Number(card.dataset.postIndex);
-  if (event.target.matches("[data-post-up]")) moveItem(draft.posts, index, -1);
-  if (event.target.matches("[data-post-down]")) moveItem(draft.posts, index, 1);
-  if (event.target.matches("[data-post-copy]")) {
+  if (action.matches("[data-post-up]")) moveItem(draft.posts, index, -1);
+  if (action.matches("[data-post-down]")) moveItem(draft.posts, index, 1);
+  if (action.matches("[data-post-copy]")) {
     const copy = structuredClone(draft.posts[index]);
     copy.id = String(draft.posts.length + 1).padStart(2, "0");
     copy.work = `${copy.work} copy`;
     draft.posts.splice(index + 1, 0, copy);
   }
-  if (event.target.matches("[data-post-delete]")) draft.posts.splice(index, 1);
+  if (action.matches("[data-post-delete]")) draft.posts.splice(index, 1);
   renderPostEditor();
 });
 
