@@ -229,7 +229,7 @@ select:focus {
   display: grid;
   place-items: center;
   border: 1px solid var(--line-strong);
-  border-radius: 50%;
+  border-radius: 6px;
   color: var(--dim);
   font-size: 0.78rem;
   overflow: hidden;

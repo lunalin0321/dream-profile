@@ -343,7 +343,7 @@ h1 {
   display: grid;
   place-items: center;
   border: 1px solid var(--line-strong);
-  border-radius: 50%;
+  border-radius: 6px;
   background: radial-gradient(circle at 50% 35%, rgba(255,255,255,.06), transparent 55%);
 }
 
@@ -517,7 +517,7 @@ h1 {
   display: grid;
   place-items: center;
   border: 1px solid var(--line-strong);
-  border-radius: 50%;
+  border-radius: 6px;
   color: var(--social-icon-color, var(--accent));
 }
 
