@@ -164,11 +164,42 @@ function renderPitList() {
       (group) => `
         <article class="pit-card">
           <h3>${escapeHtml(group.title)}</h3>
-          <ul>${(group.items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          <div class="pit-items">
+            ${normalizePitItems(group.items)
+              .map(
+                (item) => `
+                  <section class="pit-item">
+                    <h4>${escapeHtml(item.work)}</h4>
+                    <dl>
+                      <div><dt>主推</dt><dd>${escapeHtml(item.mainOshi || "未填")}</dd></div>
+                      <div><dt>副推</dt><dd>${escapeHtml(item.subOshi || "未填")}</dd></div>
+                      <div><dt>吃 CP</dt><dd>${escapeHtml(item.cp || "未填")}</dd></div>
+                    </dl>
+                    ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}
+                  </section>
+                `
+              )
+              .join("")}
+          </div>
         </article>
       `
     )
     .join("");
+}
+
+function normalizePitItems(items = []) {
+  return items.map((item) => {
+    if (typeof item === "string") {
+      return { work: item, mainOshi: "", subOshi: "", cp: "", note: "" };
+    }
+    return {
+      work: item.work || "",
+      mainOshi: item.mainOshi || "",
+      subOshi: item.subOshi || "",
+      cp: item.cp || "",
+      note: item.note || "",
+    };
+  });
 }
 
 function normalizeUrl(url) {

@@ -63,6 +63,40 @@ function linesToText(value) {
   return (value || []).join("\n");
 }
 
+function pitItemsToText(items) {
+  return normalizePitItems(items)
+    .map((item) => [item.work, item.mainOshi, item.subOshi, item.cp, item.note].join("｜"))
+    .join("\n");
+}
+
+function textToPitItems(value) {
+  return value
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [work = "", mainOshi = "", subOshi = "", cp = "", note = ""] = line
+        .split("｜")
+        .map((part) => part.trim());
+      return { work, mainOshi, subOshi, cp, note };
+    });
+}
+
+function normalizePitItems(items = []) {
+  return items.map((item) => {
+    if (typeof item === "string") {
+      return { work: item, mainOshi: "", subOshi: "", cp: "", note: "" };
+    }
+    return {
+      work: item.work || "",
+      mainOshi: item.mainOshi || "",
+      subOshi: item.subOshi || "",
+      cp: item.cp || "",
+      note: item.note || "",
+    };
+  });
+}
+
 function textToLines(value) {
   return value
     .split("\n")
@@ -127,8 +161,8 @@ function renderPitEditor() {
               <input data-pit-field="title" type="text" value="${escapeAttr(group.title)}" />
             </label>
             <label class="wide">
-              作品，每行一個
-              <textarea data-pit-field="items" rows="4">${escapeHtml(linesToText(group.items))}</textarea>
+              作品，每行：作品｜主推｜副推｜吃CP｜備註
+              <textarea data-pit-field="items" rows="6">${escapeHtml(pitItemsToText(group.items))}</textarea>
             </label>
           </div>
         </article>
@@ -260,7 +294,7 @@ function customIconField(type, iconImage) {
 function collectEditors() {
   draft.pitList = [...pitEditor.querySelectorAll("[data-pit-index]")].map((card) => ({
     title: card.querySelector('[data-pit-field="title"]').value.trim(),
-    items: textToLines(card.querySelector('[data-pit-field="items"]').value),
+    items: textToPitItems(card.querySelector('[data-pit-field="items"]').value),
   }));
 
   draft.socialLinks = [...socialEditor.querySelectorAll("[data-social-index]")].map((card) => ({
@@ -440,7 +474,10 @@ document.querySelector("[data-reset-preview]").addEventListener("click", resetPr
 document.querySelector("[data-add-pit]").addEventListener("click", () => {
   collectBasicFields();
   collectEditors();
-  draft.pitList.push({ title: "新分類", items: ["作品名"] });
+  draft.pitList.push({
+    title: "新分類",
+    items: [{ work: "作品名", mainOshi: "主推", subOshi: "副推", cp: "吃CP", note: "備註" }],
+  });
   renderPitEditor();
 });
 document.querySelector("[data-add-social]").addEventListener("click", () => {

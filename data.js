@@ -35,15 +35,74 @@ window.DREAM_DATA = {
   pitList: [
     {
       title: "目前主坑",
-      items: ["黎明的誓約", "月蝕之夜", "王座之側"],
+      items: [
+        {
+          work: "黎明的誓約",
+          mainOshi: "艾爾文",
+          subOshi: "騎士團",
+          cp: "A/B、C/D",
+          note: "有夢角，詳細見下方夢角檔案。",
+        },
+        {
+          work: "月蝕之夜",
+          mainOshi: "夜斗",
+          subOshi: "月之眷屬",
+          cp: "夜色組",
+          note: "有夢角，劇透注意。",
+        },
+        {
+          work: "王座之側",
+          mainOshi: "路德維希",
+          subOshi: "近衛",
+          cp: "宮廷組",
+          note: "有夢角。",
+        },
+      ],
     },
     {
       title: "副坑 / 低浮上",
-      items: ["深海的呼喚", "綠蔭下的羅曼史", "星屑協奏曲"],
+      items: [
+        {
+          work: "深海的呼喚",
+          mainOshi: "雷克",
+          subOshi: "海軍組",
+          cp: "海岸組",
+          note: "有夢角，低浮上。",
+        },
+        {
+          work: "綠蔭下的羅曼史",
+          mainOshi: "雷恩",
+          subOshi: "學生會",
+          cp: "竹馬組",
+          note: "有夢角，日常向。",
+        },
+        {
+          work: "星屑協奏曲",
+          mainOshi: "卡諾",
+          subOshi: "團體箱推",
+          cp: "舞台組",
+          note: "有夢角。",
+        },
+      ],
     },
     {
-      title: "暫停 / 草稿",
-      items: ["時光停滯之處", "未完的詩篇"],
+      title: "單純坑 / 沒有夢角",
+      items: [
+        {
+          work: "時光停滯之處",
+          mainOshi: "基爾伯特",
+          subOshi: "研究室",
+          cp: "師徒組",
+          note: "目前只當坑單記錄。",
+        },
+        {
+          work: "未完的詩篇",
+          mainOshi: "賽西爾",
+          subOshi: "詩人組",
+          cp: "知己組",
+          note: "暫無夢角。",
+        },
+      ],
     },
   ],
   socialLinks: [
