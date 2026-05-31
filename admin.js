@@ -1,4 +1,5 @@
 const storageKey = "dream-private-data";
+const maxIconPixels = 512;
 const iconOptions = [
   "rose",
   "anchor",
@@ -404,7 +405,19 @@ function readIconFile(file) {
       return;
     }
     const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
+    reader.onload = () => {
+      const dataUrl = reader.result;
+      const image = new Image();
+      image.onload = () => {
+        if (image.naturalWidth > maxIconPixels || image.naturalHeight > maxIconPixels) {
+          reject(new Error(`icon 尺寸不可超過 ${maxIconPixels}x${maxIconPixels}px`));
+          return;
+        }
+        resolve(dataUrl);
+      };
+      image.onerror = () => reject(new Error("圖片尺寸讀取失敗，請換一張圖"));
+      image.src = dataUrl;
+    };
     reader.onerror = () => reject(new Error("圖片讀取失敗"));
     reader.readAsDataURL(file);
   });
