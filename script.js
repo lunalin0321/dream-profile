@@ -231,11 +231,15 @@ function normalizeUrl(url) {
   return `https://${url}`;
 }
 
+function normalizeColor(value) {
+  return /^#[0-9a-f]{6}$/i.test(value || "") ? value : "var(--accent)";
+}
+
 function renderSocialLinks() {
   socialGrid.innerHTML = (data.socialLinks || [])
     .map(
       (link) => `
-        <a class="social-card" href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">
+        <a class="social-card" style="--social-icon-color: ${normalizeColor(link.iconColor)}" href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">
           <span aria-hidden="true">${renderIcon(link)}</span>
           <div>
             <h3>${escapeHtml(link.label)}</h3>

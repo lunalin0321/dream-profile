@@ -198,7 +198,7 @@ function renderSocialEditor() {
               icon
               ${iconSelect("social", link.icon)}
             </label>
-            ${customIconField("social", link.iconImage, link.iconImageMode)}
+            ${customIconField("social", link.iconImage, link.iconImageMode, link.iconColor)}
             <label class="wide">
               網址
               <input data-social-field="url" type="url" value="${escapeAttr(link.url)}" />
@@ -279,7 +279,18 @@ function iconSelect(type, selected) {
   `;
 }
 
-function customIconField(type, iconImage, iconImageMode = "color") {
+function customIconField(type, iconImage, iconImageMode = "color", iconColor = "#8cc9ff") {
+  const tintLabel = type === "social" ? "白圖使用自選色" : "白圖跟隨重點色";
+  const colorControl =
+    type === "social"
+      ? `
+        <label>
+          白圖顏色
+          <input data-${type}-field="iconColor" type="color" value="${escapeAttr(iconColor || "#8cc9ff")}" />
+        </label>
+      `
+      : "";
+
   return `
     <div class="custom-icon-editor">
       <div class="custom-icon-preview ${iconImage ? "has-image" : ""}" data-${type}-icon-preview>
@@ -290,9 +301,10 @@ function customIconField(type, iconImage, iconImageMode = "color") {
           自訂 icon 模式
           <select data-${type}-field="iconImageMode">
             <option value="color" ${iconImageMode !== "tint" ? "selected" : ""}>全彩原樣</option>
-            <option value="tint" ${iconImageMode === "tint" ? "selected" : ""}>白圖跟隨重點色</option>
+            <option value="tint" ${iconImageMode === "tint" ? "selected" : ""}>${tintLabel}</option>
           </select>
         </label>
+        ${colorControl}
         <label>
           上傳自訂 icon
           <input data-${type}-icon-upload type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif" />
@@ -317,6 +329,7 @@ function collectEditors() {
     url: socialValue(card, "url"),
     note: socialValue(card, "note"),
     icon: socialValue(card, "icon") || "link",
+    iconColor: socialValue(card, "iconColor") || "#8cc9ff",
     iconImage: socialValue(card, "iconImage"),
     iconImageMode: socialValue(card, "iconImageMode") || "color",
   }));
@@ -390,6 +403,7 @@ function makeSocialLink() {
     url: "https://example.com/",
     note: "這裡寫用途或備註。",
     icon: "link",
+    iconColor: "#8cc9ff",
     iconImage: "",
     iconImageMode: "color",
   };
