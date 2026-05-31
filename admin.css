@@ -182,6 +182,47 @@ select:focus {
   background: rgba(255, 255, 255, 0.02);
 }
 
+.avatar-editor {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.avatar-preview {
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--dim);
+  font-size: 0.82rem;
+  overflow: hidden;
+  background: #080809;
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-preview.has-image {
+  border-color: var(--accent);
+}
+
+.avatar-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+  align-items: end;
+}
+
 .custom-icon-preview {
   width: 58px;
   height: 58px;
@@ -218,6 +259,7 @@ select:focus {
   line-height: 1.5;
 }
 
+.avatar-controls button,
 .custom-icon-controls button {
   min-height: 44px;
   border: 1px solid var(--line-strong);
@@ -228,6 +270,7 @@ select:focus {
   cursor: pointer;
 }
 
+.avatar-controls button:hover,
 .custom-icon-controls button:hover {
   color: var(--text);
   border-color: var(--accent);
@@ -245,6 +288,8 @@ select:focus {
 
   .form-grid,
   .panel-title.row,
+  .avatar-editor,
+  .avatar-controls,
   .custom-icon-controls {
     grid-template-columns: 1fr;
   }

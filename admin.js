@@ -1,5 +1,6 @@
 const storageKey = "dream-private-data";
 const maxIconPixels = 512;
+const maxAvatarPixels = 1024;
 const iconOptions = [
   "rose",
   "anchor",
@@ -22,6 +23,7 @@ const iconOptions = [
   "wavebox",
 ];
 const form = document.querySelector("[data-admin-form]");
+const avatarPreview = document.querySelector("[data-avatar-preview]");
 const pitEditor = document.querySelector("[data-pit-editor]");
 const socialEditor = document.querySelector("[data-social-editor]");
 const postEditor = document.querySelector("[data-post-editor]");
@@ -110,6 +112,7 @@ function bindBasicFields() {
   setValue("profile.username", draft.profile.username);
   setValue("profile.brand", draft.profile.brand);
   setValue("profile.displayName", draft.profile.displayName);
+  setValue("profile.avatarImage", draft.profile.avatarImage);
   setValue("profile.following", draft.profile.following);
   setValue("profile.lines", linesToText(draft.profile.lines));
   setValue("profile.linkText", draft.profile.linkText);
@@ -131,6 +134,7 @@ function collectBasicFields() {
   draft.profile.username = form.elements["profile.username"].value.trim();
   draft.profile.brand = form.elements["profile.brand"].value.trim();
   draft.profile.displayName = form.elements["profile.displayName"].value.trim();
+  draft.profile.avatarImage = form.elements["profile.avatarImage"].value.trim();
   draft.profile.following = form.elements["profile.following"].value.trim();
   draft.profile.lines = textToLines(form.elements["profile.lines"].value);
   draft.profile.linkText = form.elements["profile.linkText"].value.trim();
@@ -391,7 +395,7 @@ function makeSocialLink() {
   };
 }
 
-function readIconFile(file) {
+function readImageFile(file, { maxPixels, maxSizeKb, label }) {
   return new Promise((resolve, reject) => {
     if (!file) {
       resolve("");
@@ -401,8 +405,8 @@ function readIconFile(file) {
       reject(new Error("請選擇圖片檔"));
       return;
     }
-    if (file.size > 512 * 1024) {
-      reject(new Error("圖片太大，建議壓到 512KB 以下"));
+    if (file.size > maxSizeKb * 1024) {
+      reject(new Error(`圖片太大，建議壓到 ${maxSizeKb >= 1024 ? `${maxSizeKb / 1024}MB` : `${maxSizeKb}KB`} 以下`));
       return;
     }
     const reader = new FileReader();
@@ -410,8 +414,8 @@ function readIconFile(file) {
       const dataUrl = reader.result;
       const image = new Image();
       image.onload = () => {
-        if (image.naturalWidth > maxIconPixels || image.naturalHeight > maxIconPixels) {
-          reject(new Error(`icon 尺寸不可超過 ${maxIconPixels}x${maxIconPixels}px`));
+        if (image.naturalWidth > maxPixels || image.naturalHeight > maxPixels) {
+          reject(new Error(`${label} 尺寸不可超過 ${maxPixels}x${maxPixels}px`));
           return;
         }
         resolve(dataUrl);
@@ -424,12 +428,40 @@ function readIconFile(file) {
   });
 }
 
+function readIconFile(file) {
+  return readImageFile(file, { maxPixels: maxIconPixels, maxSizeKb: 512, label: "icon" });
+}
+
+function readAvatarFile(file) {
+  return readImageFile(file, { maxPixels: maxAvatarPixels, maxSizeKb: 1024, label: "頭像" });
+}
+
+function setAvatarImage(dataUrl) {
+  form.elements["profile.avatarImage"].value = dataUrl || "";
+  avatarPreview.classList.toggle("has-image", Boolean(dataUrl));
+  avatarPreview.innerHTML = dataUrl ? `<img src="${escapeAttr(dataUrl)}" alt="" />` : "頭像";
+}
+
 function setCustomIcon(card, type, dataUrl) {
   const input = card.querySelector(`[data-${type}-field="iconImage"]`);
   const preview = card.querySelector(`[data-${type}-icon-preview]`);
   input.value = dataUrl || "";
   preview.classList.toggle("has-image", Boolean(dataUrl));
   preview.innerHTML = dataUrl ? `<img src="${escapeAttr(dataUrl)}" alt="" />` : "自訂";
+}
+
+async function handleAvatarUpload(event) {
+  const upload = event.target.closest("[data-avatar-upload]");
+  if (!upload) return false;
+  try {
+    const dataUrl = await readAvatarFile(upload.files[0]);
+    setAvatarImage(dataUrl);
+    showToast("已載入頭像，記得暫存或下載 data.js");
+  } catch (error) {
+    upload.value = "";
+    showToast(error.message);
+  }
+  return true;
 }
 
 async function handleIconUpload(event, type) {
@@ -497,6 +529,11 @@ function showToast(message) {
 document.querySelector("[data-save-preview]").addEventListener("click", savePreview);
 document.querySelector("[data-download]").addEventListener("click", downloadData);
 document.querySelector("[data-reset-preview]").addEventListener("click", resetPreview);
+form.addEventListener("change", handleAvatarUpload);
+document.querySelector("[data-avatar-clear]").addEventListener("click", () => {
+  setAvatarImage("");
+  showToast("已移除頭像");
+});
 document.querySelector("[data-add-pit]").addEventListener("click", () => {
   collectBasicFields();
   collectEditors();
@@ -579,6 +616,7 @@ postEditor.addEventListener("change", async (event) => {
 
 ensureCollections();
 bindBasicFields();
+setAvatarImage(draft.profile.avatarImage || "");
 renderPitEditor();
 renderSocialEditor();
 renderPostEditor();

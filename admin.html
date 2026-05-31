@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>dream.private 後台</title>
     <meta name="robots" content="noindex" />
-    <link rel="stylesheet" href="styles.css?v=20260531-contact-import" />
-    <link rel="stylesheet" href="admin.css?v=20260531-contact-import" />
+    <link rel="stylesheet" href="styles.css?v=20260531-avatar-message" />
+    <link rel="stylesheet" href="admin.css?v=20260531-avatar-message" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -48,6 +48,18 @@
               顯示名稱
               <input name="profile.displayName" type="text" />
             </label>
+            <div class="avatar-editor wide">
+              <div class="avatar-preview" data-avatar-preview>頭像</div>
+              <div class="avatar-controls">
+                <label>
+                  上傳頭像
+                  <input data-avatar-upload type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif" />
+                </label>
+                <button type="button" data-avatar-clear>移除頭像</button>
+                <p class="upload-hint">限制：最大 1024x1024px，檔案 1MB 以下。未上傳時會使用預設圖。</p>
+                <input name="profile.avatarImage" type="hidden" />
+              </div>
+            </div>
             <label>
               追蹤中數字
               <input name="profile.following" type="text" />
@@ -138,6 +150,6 @@
     <div class="toast" role="status" aria-live="polite"></div>
 
     <script src="data.js?v=20260531-contact-import"></script>
-    <script src="admin.js?v=20260531-admin-focus"></script>
+    <script src="admin.js?v=20260531-avatar-message"></script>
   </body>
 </html>

@@ -86,6 +86,20 @@ function renderProfile() {
     node.textContent = data.profile[node.dataset.profile] || "";
   });
 
+  const avatar = document.querySelector("[data-profile-avatar]");
+  if (avatar && data.profile.avatarImage) {
+    avatar.classList.add("has-image");
+    avatar.innerHTML = `<img src="${escapeHtml(data.profile.avatarImage)}" alt="" loading="lazy" />`;
+  }
+
+  const messageLink = document.querySelector("[data-message-link]");
+  const primarySocial = (data.socialLinks || []).find((link) => link.url);
+  if (messageLink && primarySocial) {
+    messageLink.href = primarySocial.url;
+    messageLink.target = "_blank";
+    messageLink.rel = "noreferrer";
+  }
+
   const bio = document.querySelector("[data-profile-bio]");
   bio.innerHTML = `
     <p class="display-name">${escapeHtml(data.profile.displayName)}</p>
