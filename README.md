@@ -52,7 +52,7 @@
 
 可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`、`moon`、`heart`、`book`、`camera`、`mail`、`link`、`x`、`instagram`、`facebook`、`plurk`、`wavebox`。
 
-也可以在後台上傳自訂 icon。上傳後會存成 `data.js` 裡的 Base64 圖片，不用另外上傳圖片檔。圖片尺寸不可超過 `512 × 512px`，檔案大小建議並限制在 `512KB` 以下，最好是 PNG、WebP 或 SVG。
+也可以在後台上傳自訂 icon。上傳後會存成 `data.js` 裡的 Base64 圖片，不用另外上傳圖片檔。README 與後台都會標示限制：圖片尺寸不可超過 `512 × 512px`，檔案大小不可超過 `512KB`，最好是 PNG、WebP 或 SVG。
 
 自訂 icon 有兩種模式：
 

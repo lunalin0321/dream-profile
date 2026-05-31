@@ -211,6 +211,13 @@ select:focus {
   align-items: end;
 }
 
+.upload-hint {
+  grid-column: 1 / -1;
+  color: var(--dim);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .custom-icon-controls button {
   min-height: 44px;
   border: 1px solid var(--line-strong);

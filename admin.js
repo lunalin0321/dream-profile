@@ -293,6 +293,7 @@ function customIconField(type, iconImage, iconImageMode = "color") {
           上傳自訂 icon
           <input data-${type}-icon-upload type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif" />
         </label>
+        <p class="upload-hint">限制：最大 512x512px，檔案 512KB 以下。</p>
         <button type="button" data-${type}-icon-clear>移除自訂 icon</button>
       </div>
       <input data-${type}-field="iconImage" type="hidden" value="${escapeAttr(iconImage)}" />
