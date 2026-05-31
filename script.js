@@ -70,6 +70,10 @@ function icon(name) {
 
 function renderIcon(item) {
   if (item.iconImage) {
+    if (item.iconImageMode === "tint") {
+      const imageUrl = escapeHtml(item.iconImage);
+      return `<span class="custom-icon custom-icon-mask" style="--icon-image: url('${imageUrl}')" aria-hidden="true"></span>`;
+    }
     return `<img class="custom-icon" src="${escapeHtml(item.iconImage)}" alt="" loading="lazy" />`;
   }
   return icon(item.icon);

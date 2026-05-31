@@ -65,6 +65,19 @@ svg {
   border-radius: inherit;
 }
 
+.custom-icon-mask {
+  background: currentColor;
+  border-radius: 0;
+  -webkit-mask-image: var(--icon-image);
+  mask-image: var(--icon-image);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 .grain {
   position: fixed;
   inset: 0;

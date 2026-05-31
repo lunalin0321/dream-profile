@@ -192,7 +192,7 @@ function renderSocialEditor() {
               icon
               ${iconSelect("social", link.icon)}
             </label>
-            ${customIconField("social", link.iconImage)}
+            ${customIconField("social", link.iconImage, link.iconImageMode)}
             <label class="wide">
               網址
               <input data-social-field="url" type="url" value="${escapeAttr(link.url)}" />
@@ -237,7 +237,7 @@ function renderPostEditor() {
               icon
               ${iconSelect("post", post.icon)}
             </label>
-            ${customIconField("post", post.iconImage)}
+            ${customIconField("post", post.iconImage, post.iconImageMode)}
             <label class="wide">
               界線 / 雷點，每行一條
               <textarea data-post-field="boundaries" rows="3">${escapeHtml(linesToText(post.boundaries))}</textarea>
@@ -273,13 +273,20 @@ function iconSelect(type, selected) {
   `;
 }
 
-function customIconField(type, iconImage) {
+function customIconField(type, iconImage, iconImageMode = "color") {
   return `
     <div class="custom-icon-editor">
       <div class="custom-icon-preview ${iconImage ? "has-image" : ""}" data-${type}-icon-preview>
         ${iconImage ? `<img src="${escapeAttr(iconImage)}" alt="" />` : "自訂"}
       </div>
       <div class="custom-icon-controls">
+        <label>
+          自訂 icon 模式
+          <select data-${type}-field="iconImageMode">
+            <option value="color" ${iconImageMode !== "tint" ? "selected" : ""}>全彩原樣</option>
+            <option value="tint" ${iconImageMode === "tint" ? "selected" : ""}>白圖跟隨重點色</option>
+          </select>
+        </label>
         <label>
           上傳自訂 icon
           <input data-${type}-icon-upload type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif" />
@@ -304,6 +311,7 @@ function collectEditors() {
     note: socialValue(card, "note"),
     icon: socialValue(card, "icon") || "link",
     iconImage: socialValue(card, "iconImage"),
+    iconImageMode: socialValue(card, "iconImageMode") || "color",
   }));
 
   draft.posts = [...postEditor.querySelectorAll("[data-post-index]")].map((card) => ({
@@ -316,6 +324,7 @@ function collectEditors() {
     color: value(card, "color") || "#8cc9ff",
     icon: value(card, "icon") || "star",
     iconImage: value(card, "iconImage"),
+    iconImageMode: value(card, "iconImageMode") || "color",
     boundaries: textToLines(value(card, "boundaries")),
     tags: textToLines(value(card, "tags")),
     note: value(card, "note"),
@@ -363,6 +372,7 @@ function makePost() {
     color: "#8cc9ff",
     icon: "star",
     iconImage: "",
+    iconImageMode: "color",
   };
 }
 
@@ -374,6 +384,7 @@ function makeSocialLink() {
     note: "這裡寫用途或備註。",
     icon: "link",
     iconImage: "",
+    iconImageMode: "color",
   };
 }
 
