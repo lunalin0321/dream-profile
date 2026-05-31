@@ -539,7 +539,7 @@ document.querySelector("[data-add-pit]").addEventListener("click", () => {
   collectEditors();
   draft.pitList.push({
     title: "新分類",
-    items: [{ work: "作品名", mainOshi: "主推", subOshi: "副推", cp: "吃CP", note: "備註" }],
+    items: [{ work: "作品名", mainOshi: "", subOshi: "", cp: "", note: "備註" }],
   });
   renderPitEditor();
 });

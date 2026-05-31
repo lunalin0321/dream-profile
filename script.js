@@ -92,14 +92,6 @@ function renderProfile() {
     avatar.innerHTML = `<img src="${escapeHtml(data.profile.avatarImage)}" alt="" loading="lazy" />`;
   }
 
-  const messageLink = document.querySelector("[data-message-link]");
-  const primarySocial = (data.socialLinks || []).find((link) => link.url);
-  if (messageLink && primarySocial) {
-    messageLink.href = primarySocial.url;
-    messageLink.target = "_blank";
-    messageLink.rel = "noreferrer";
-  }
-
   const bio = document.querySelector("[data-profile-bio]");
   bio.innerHTML = `
     <p class="display-name">${escapeHtml(data.profile.displayName)}</p>
@@ -189,11 +181,7 @@ function renderPitList() {
                 (item) => `
                   <section class="pit-item">
                     <h4>${escapeHtml(item.work)}</h4>
-                    <dl>
-                      <div><dt>主推</dt><dd>${escapeHtml(item.mainOshi || "未填")}</dd></div>
-                      <div><dt>副推</dt><dd>${escapeHtml(item.subOshi || "未填")}</dd></div>
-                      <div><dt>吃 CP</dt><dd>${escapeHtml(item.cp || "未填")}</dd></div>
-                    </dl>
+                    ${renderPitMeta(item)}
                     ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}
                   </section>
                 `
@@ -204,6 +192,22 @@ function renderPitList() {
       `
     )
     .join("");
+}
+
+function renderPitMeta(item) {
+  const rows = [
+    ["主推", item.mainOshi],
+    ["副推", item.subOshi],
+    ["吃 CP", item.cp],
+  ].filter(([, value]) => value);
+
+  if (!rows.length) return "";
+
+  return `
+    <dl>
+      ${rows.map(([label, value]) => `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}
+    </dl>
+  `;
 }
 
 function normalizePitItems(items = []) {
