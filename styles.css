@@ -161,6 +161,7 @@ main {
   aspect-ratio: 1;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
+  overflow: hidden;
   display: grid;
   place-items: center;
   color: var(--muted);
@@ -179,9 +180,11 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .avatar.has-image {
+  padding: 8px;
   background: #080809;
 }
 
@@ -347,6 +350,11 @@ h1 {
   background: radial-gradient(circle at 50% 35%, rgba(255,255,255,.06), transparent 55%);
 }
 
+.story span svg {
+  width: 2.15rem;
+  height: 2.15rem;
+}
+
 .story:hover {
   color: var(--text);
 }
@@ -424,6 +432,11 @@ h1 {
   width: clamp(2.4rem, 6vw, 4.8rem);
   height: clamp(2.4rem, 6vw, 4.8rem);
   color: var(--tile-accent);
+}
+
+.tile-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .post-tile h3 {
@@ -519,6 +532,11 @@ h1 {
   border: 1px solid var(--line-strong);
   border-radius: 6px;
   color: var(--social-icon-color, var(--accent));
+}
+
+.social-card span svg {
+  width: 1.85rem;
+  height: 1.85rem;
 }
 
 .social-card span.has-custom-icon {
@@ -628,13 +646,13 @@ h1 {
 }
 
 .card-title svg {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.65rem;
+  height: 2.65rem;
 }
 
 .card-title .custom-icon {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.65rem;
+  height: 2.65rem;
   border-radius: 0;
 }
 
