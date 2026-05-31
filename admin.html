@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>dream.private 後台</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="index.html">dream.admin</a>
+      <nav class="admin-actions" aria-label="後台操作">
+        <button class="button" type="button" data-reset-preview>清除暫存</button>
+        <button class="button" type="button" data-save-preview>暫存預覽</button>
+        <button class="button primary" type="button" data-download>下載 data.js</button>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <h1>內容後台</h1>
+        <p>
+          GitHub Pages 是靜態網站，所以這個後台不會直接寫回雲端。你可以先暫存預覽，確認後下載
+          <code>data.js</code>，再上傳覆蓋 repo 裡的同名檔案。
+        </p>
+      </section>
+
+      <form class="admin-form" data-admin-form>
+        <section class="admin-panel">
+          <div class="panel-title">
+            <h2>Profile</h2>
+            <p>主頁上方 IG 帳號資訊。</p>
+          </div>
+          <div class="form-grid">
+            <label>
+              帳號
+              <input name="profile.username" type="text" />
+            </label>
+            <label>
+              頁首品牌字
+              <input name="profile.brand" type="text" />
+            </label>
+            <label>
+              顯示名稱
+              <input name="profile.displayName" type="text" />
+            </label>
+            <label>
+              追蹤中數字
+              <input name="profile.following" type="text" />
+            </label>
+            <label class="wide">
+              Bio，每行一段
+              <textarea name="profile.lines" rows="5"></textarea>
+            </label>
+            <label class="wide">
+              Profile link 文案
+              <input name="profile.linkText" type="text" />
+            </label>
+            <label class="wide">
+              Footer
+              <input name="profile.footer" type="text" />
+            </label>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="panel-title">
+            <h2>關於與守則</h2>
+            <p>下方資訊區內容。</p>
+          </div>
+          <div class="form-grid">
+            <label>
+              關於標題
+              <input name="about.title" type="text" />
+            </label>
+            <label>
+              守則標題
+              <input name="rules.title" type="text" />
+            </label>
+            <label class="wide">
+              關於文字，每行一段
+              <textarea name="about.paragraphs" rows="4"></textarea>
+            </label>
+            <label class="wide">
+              守則，每行一條
+              <textarea name="rules.items" rows="4"></textarea>
+            </label>
+            <label>
+              提醒標題
+              <input name="message.title" type="text" />
+            </label>
+            <label class="wide">
+              提醒文字
+              <textarea name="message.text" rows="3"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="panel-title row">
+            <div>
+              <h2>坑單</h2>
+              <p>例如主坑、副坑、暫停、待補。</p>
+            </div>
+            <button class="button" type="button" data-add-pit>新增分類</button>
+          </div>
+          <div class="editor-list" data-pit-editor></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="panel-title row">
+            <div>
+              <h2>社群連結</h2>
+              <p>X、Plurk、Instagram、Wavebox、棉花糖或其他連結。</p>
+            </div>
+            <button class="button" type="button" data-add-social>新增連結</button>
+          </div>
+          <div class="editor-list" data-social-editor></div>
+        </section>
+
+        <section class="admin-panel">
+          <div class="panel-title row">
+            <div>
+              <h2>夢角貼文</h2>
+              <p>每一張卡就是一個作品 / 夢角模板。</p>
+            </div>
+            <button class="button" type="button" data-add-post>新增夢角</button>
+          </div>
+          <div class="editor-list" data-post-editor></div>
+        </section>
+      </form>
+    </main>
+
+    <div class="toast" role="status" aria-live="polite"></div>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
