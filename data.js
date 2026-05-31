@@ -31,7 +31,7 @@ window.DREAM_DATA = {
   },
   "message": {
     "title": "最後的小提醒",
-    "text": "這個頁面可以當成 Carrd 排版稿，也可以直接免費部署成網站。後台可以修改資料並匯出 data.js。\n詳細請看https://github.com/lunalin0321/dream-profile/"
+    "text": "這個頁面可以當成 Carrd 排版稿，也可以直接免費部署成網站。後台可以修改資料並匯出 data.js。\n詳細請看GitHub詳情頁"
   },
   "pitList": [
     {
