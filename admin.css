@@ -238,11 +238,12 @@ select:focus {
 .custom-icon-preview img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .custom-icon-preview.has-image {
-  border-color: var(--accent);
+  border-color: transparent;
+  border-radius: 0;
 }
 
 .custom-icon-controls {

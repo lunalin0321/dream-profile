@@ -528,6 +528,7 @@ function resetPreview() {
   draft = structuredClone(window.DREAM_DATA);
   ensureCollections();
   bindBasicFields();
+  setAvatarImage(draft.profile.avatarImage || "");
   renderPitEditor();
   renderSocialEditor();
   renderPostEditor();

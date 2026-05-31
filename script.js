@@ -125,7 +125,7 @@ function renderPosts() {
         <a class="post-tile" style="--tile-accent: ${post.color}" href="#dream-${post.id}" aria-label="${escapeHtml(post.work)} ${escapeHtml(post.character)}">
           <span class="pin" aria-hidden="true">${icon("star")}</span>
           <div class="tile-inner">
-            <span class="tile-icon">${renderIcon(post)}</span>
+            <span class="tile-icon ${post.iconImage ? "has-custom-icon" : ""}">${renderIcon(post)}</span>
             <div>
               <h3>${escapeHtml(post.work)}</h3>
               <p>${escapeHtml(post.character)}</p>
@@ -240,7 +240,7 @@ function renderSocialLinks() {
     .map(
       (link) => `
         <a class="social-card" style="--social-icon-color: ${normalizeColor(link.iconColor)}" href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">
-          <span aria-hidden="true">${renderIcon(link)}</span>
+          <span class="${link.iconImage ? "has-custom-icon" : ""}" aria-hidden="true">${renderIcon(link)}</span>
           <div>
             <h3>${escapeHtml(link.label)}</h3>
             <p class="handle">${escapeHtml(link.handle)}</p>
