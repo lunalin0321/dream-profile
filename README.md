@@ -2,7 +2,9 @@
 
 這是一個不用 Carrd 付費功能的單頁自介模板。直接開 `index.html` 就能看，也可以免費部署到 GitHub Pages、Netlify 或 Cloudflare Pages。
 
-可以自行拿去修改成自己的版本。請記得到 [Releases](https://github.com/lunalin0321/dream-profile/releases) 下載最新版 zip，不要只下載單一檔案，才不會漏掉後台、樣式或資料檔。
+可以自行拿去修改成自己的版本。請記得到 [Releases](https://github.com/lunatuki1867/dream-profile/releases) 下載最新版 zip，不要只下載單一檔案，才不會漏掉後台、樣式或資料檔。
+
+預設內容只放填寫指示與範例欄位，不包含作者的個人自介、坑單或社群帳號。下載後請先打開 `admin.html`，把資料改成自己的內容，再下載新的 `data.js` 覆蓋回專案。
 
 目前包含：
 
@@ -13,7 +15,7 @@
 - `admin.html` 靜態後台
 - `data.js` 集中管理資料
 
-## 我的聯絡方式
+## 問題聯絡
 
 有問題請用以下方式聯絡：
 
@@ -90,10 +92,7 @@ Profile 區也可以上傳頭像。頭像會存進 `data.js`，不用另外上�
 - icon 可以在後台下拉選單修改。
 - 也可以上傳自訂 icon；自訂圖會優先於下拉選單 icon 顯示。若上傳白色 icon，模式選「白圖使用自選色」後可以自己挑 icon 顏色。
 
-目前預設聯絡方式：
-
-- Facebook：[林璐瑤](https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr)
-- Plurk：[🌙ℒ𝓊𝓃𝒶🌙](https://www.plurk.com/u/Luna_Tuki)
+預設社群連結只放範例欄位，例如 `平台名稱`、`@your_id`、`https://example.com/`。請在後台改成自己的 Facebook、Plurk、X / Twitter、Instagram、Wavebox 或其他連結。
 
 ## 怎麼匯入到自己的 GitHub
 
