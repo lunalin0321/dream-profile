@@ -109,6 +109,10 @@ input[type="color"] {
   padding: 0.2rem;
 }
 
+input[type="file"] {
+  padding: 0.58rem 0.75rem;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
@@ -166,6 +170,62 @@ select:focus {
   border-color: var(--accent);
 }
 
+.custom-icon-editor {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  grid-column: 1 / -1;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.custom-icon-preview {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--dim);
+  font-size: 0.78rem;
+  overflow: hidden;
+}
+
+.custom-icon-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom-icon-preview.has-image {
+  border-color: var(--accent);
+}
+
+.custom-icon-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+  align-items: end;
+}
+
+.custom-icon-controls button {
+  min-height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  padding: 0 0.75rem;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.custom-icon-controls button:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
 @media (max-width: 720px) {
   .admin-actions {
     gap: 0.3rem;
@@ -177,7 +237,8 @@ select:focus {
   }
 
   .form-grid,
-  .panel-title.row {
+  .panel-title.row,
+  .custom-icon-controls {
     grid-template-columns: 1fr;
   }
 }

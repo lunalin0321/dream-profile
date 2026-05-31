@@ -158,6 +158,7 @@ function renderSocialEditor() {
               icon
               ${iconSelect("social", link.icon)}
             </label>
+            ${customIconField("social", link.iconImage)}
             <label class="wide">
               網址
               <input data-social-field="url" type="url" value="${escapeAttr(link.url)}" />
@@ -202,6 +203,7 @@ function renderPostEditor() {
               icon
               ${iconSelect("post", post.icon)}
             </label>
+            ${customIconField("post", post.iconImage)}
             <label class="wide">
               界線 / 雷點，每行一條
               <textarea data-post-field="boundaries" rows="3">${escapeHtml(linesToText(post.boundaries))}</textarea>
@@ -237,6 +239,24 @@ function iconSelect(type, selected) {
   `;
 }
 
+function customIconField(type, iconImage) {
+  return `
+    <div class="custom-icon-editor">
+      <div class="custom-icon-preview ${iconImage ? "has-image" : ""}" data-${type}-icon-preview>
+        ${iconImage ? `<img src="${escapeAttr(iconImage)}" alt="" />` : "自訂"}
+      </div>
+      <div class="custom-icon-controls">
+        <label>
+          上傳自訂 icon
+          <input data-${type}-icon-upload type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml,image/gif" />
+        </label>
+        <button type="button" data-${type}-icon-clear>移除自訂 icon</button>
+      </div>
+      <input data-${type}-field="iconImage" type="hidden" value="${escapeAttr(iconImage)}" />
+    </div>
+  `;
+}
+
 function collectEditors() {
   draft.pitList = [...pitEditor.querySelectorAll("[data-pit-index]")].map((card) => ({
     title: card.querySelector('[data-pit-field="title"]').value.trim(),
@@ -249,6 +269,7 @@ function collectEditors() {
     url: socialValue(card, "url"),
     note: socialValue(card, "note"),
     icon: socialValue(card, "icon") || "link",
+    iconImage: socialValue(card, "iconImage"),
   }));
 
   draft.posts = [...postEditor.querySelectorAll("[data-post-index]")].map((card) => ({
@@ -260,6 +281,7 @@ function collectEditors() {
     status: value(card, "status"),
     color: value(card, "color") || "#8cc9ff",
     icon: value(card, "icon") || "star",
+    iconImage: value(card, "iconImage"),
     boundaries: textToLines(value(card, "boundaries")),
     tags: textToLines(value(card, "tags")),
     note: value(card, "note"),
@@ -306,6 +328,7 @@ function makePost() {
     note: "補充設定、公開程度、委託圖或口嗨規則。",
     color: "#8cc9ff",
     icon: "star",
+    iconImage: "",
   };
 }
 
@@ -316,7 +339,61 @@ function makeSocialLink() {
     url: "https://example.com/",
     note: "這裡寫用途或備註。",
     icon: "link",
+    iconImage: "",
   };
+}
+
+function readIconFile(file) {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      resolve("");
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      reject(new Error("請選擇圖片檔"));
+      return;
+    }
+    if (file.size > 512 * 1024) {
+      reject(new Error("圖片太大，建議壓到 512KB 以下"));
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error("圖片讀取失敗"));
+    reader.readAsDataURL(file);
+  });
+}
+
+function setCustomIcon(card, type, dataUrl) {
+  const input = card.querySelector(`[data-${type}-field="iconImage"]`);
+  const preview = card.querySelector(`[data-${type}-icon-preview]`);
+  input.value = dataUrl || "";
+  preview.classList.toggle("has-image", Boolean(dataUrl));
+  preview.innerHTML = dataUrl ? `<img src="${escapeAttr(dataUrl)}" alt="" />` : "自訂";
+}
+
+async function handleIconUpload(event, type) {
+  const upload = event.target.closest(`[data-${type}-icon-upload]`);
+  if (!upload) return false;
+  const card = upload.closest(`[data-${type}-index]`);
+  try {
+    const dataUrl = await readIconFile(upload.files[0]);
+    setCustomIcon(card, type, dataUrl);
+    showToast("已載入自訂 icon，記得暫存或下載 data.js");
+  } catch (error) {
+    upload.value = "";
+    showToast(error.message);
+  }
+  return true;
+}
+
+function handleIconClear(event, type) {
+  const button = event.target.closest(`[data-${type}-icon-clear]`);
+  if (!button) return false;
+  const card = button.closest(`[data-${type}-index]`);
+  setCustomIcon(card, type, "");
+  showToast("已移除自訂 icon");
+  return true;
 }
 
 function savePreview() {
@@ -394,6 +471,7 @@ pitEditor.addEventListener("click", (event) => {
 socialEditor.addEventListener("click", (event) => {
   const card = event.target.closest("[data-social-index]");
   if (!card) return;
+  if (handleIconClear(event, "social")) return;
   collectBasicFields();
   collectEditors();
   const index = Number(card.dataset.socialIndex);
@@ -403,9 +481,14 @@ socialEditor.addEventListener("click", (event) => {
   renderSocialEditor();
 });
 
+socialEditor.addEventListener("change", async (event) => {
+  await handleIconUpload(event, "social");
+});
+
 postEditor.addEventListener("click", (event) => {
   const card = event.target.closest("[data-post-index]");
   if (!card) return;
+  if (handleIconClear(event, "post")) return;
   collectBasicFields();
   collectEditors();
   const index = Number(card.dataset.postIndex);
@@ -419,6 +502,10 @@ postEditor.addEventListener("click", (event) => {
   }
   if (event.target.matches("[data-post-delete]")) draft.posts.splice(index, 1);
   renderPostEditor();
+});
+
+postEditor.addEventListener("change", async (event) => {
+  await handleIconUpload(event, "post");
 });
 
 ensureCollections();

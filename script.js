@@ -68,6 +68,13 @@ function icon(name) {
   return `<svg viewBox="0 0 24 24" aria-hidden="true">${iconPaths[name] || iconPaths.star}</svg>`;
 }
 
+function renderIcon(item) {
+  if (item.iconImage) {
+    return `<img class="custom-icon" src="${escapeHtml(item.iconImage)}" alt="" loading="lazy" />`;
+  }
+  return icon(item.icon);
+}
+
 function renderProfile() {
   document.title = `${data.profile.username} | 夢女自介`;
   document.querySelectorAll("[data-profile]").forEach((node) => {
@@ -107,7 +114,7 @@ function renderPosts() {
         <a class="post-tile" style="--tile-accent: ${post.color}" href="#dream-${post.id}" aria-label="${escapeHtml(post.work)} ${escapeHtml(post.character)}">
           <span class="pin" aria-hidden="true">${icon("star")}</span>
           <div class="tile-inner">
-            <span class="tile-icon">${icon(post.icon)}</span>
+            <span class="tile-icon">${renderIcon(post)}</span>
             <div>
               <h3>${escapeHtml(post.work)}</h3>
               <p>${escapeHtml(post.character)}</p>
@@ -124,7 +131,7 @@ function renderPosts() {
       (post) => `
         <article class="dream-card" id="dream-${post.id}" style="--tile-accent: ${post.color}">
           <div class="card-title">
-            ${icon(post.icon)}
+            ${renderIcon(post)}
             <h3>${escapeHtml(post.work)}</h3>
           </div>
           <dl class="meta-list">
@@ -175,7 +182,7 @@ function renderSocialLinks() {
     .map(
       (link) => `
         <a class="social-card" href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">
-          <span aria-hidden="true">${icon(link.icon)}</span>
+          <span aria-hidden="true">${renderIcon(link)}</span>
           <div>
             <h3>${escapeHtml(link.label)}</h3>
             <p class="handle">${escapeHtml(link.handle)}</p>

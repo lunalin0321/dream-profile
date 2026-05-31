@@ -43,6 +43,8 @@
 
 可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`、`moon`、`heart`、`book`、`camera`、`mail`、`link`、`x`、`instagram`、`plurk`、`wavebox`。
 
+也可以在後台上傳自訂 icon。上傳後會存成 `data.js` 裡的 Base64 圖片，不用另外上傳圖片檔。建議使用 512KB 以下的小圖，最好是 PNG、WebP 或 SVG。
+
 ## 怎麼改坑單
 
 打開 `admin.html` 的「坑單」區：
@@ -60,6 +62,7 @@
 - 網址請填完整連結，像 `https://x.com/your_id`。
 - 說明會顯示在主頁的社群卡片裡。
 - icon 可以在後台下拉選單修改。
+- 也可以上傳自訂 icon；自訂圖會優先於下拉選單 icon 顯示。
 
 ## GitHub Pages 部署到另一個帳號
 
