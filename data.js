@@ -108,16 +108,16 @@ window.DREAM_DATA = {
   socialLinks: [
     {
       label: "Facebook",
-      handle: "Luna",
+      handle: "林璐瑤",
       url: "https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr",
-      note: "主要聯絡方式",
+      note: "有問題請用此方式聯絡",
       icon: "facebook",
     },
     {
       label: "Plurk",
-      handle: "@Luna_Tuki",
-      url: "https://www.plurk.com/Luna_Tuki",
-      note: "噗浪 / 夢向與日常交流",
+      handle: "🌙ℒ𝓊𝓃𝒶🌙",
+      url: "https://www.plurk.com/u/Luna_Tuki",
+      note: "有問題請用此方式聯絡",
       icon: "plurk",
     },
   ],
