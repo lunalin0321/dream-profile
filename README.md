@@ -2,6 +2,8 @@
 
 這是一個不用 Carrd 付費功能的單頁自介模板。直接開 `index.html` 就能看，也可以免費部署到 GitHub Pages、Netlify 或 Cloudflare Pages。
 
+可以自行拿去修改成自己的版本。請記得到 [Releases](https://github.com/lunalin0321/dream-profile/releases) 下載最新版 zip，不要只下載單一檔案，才不會漏掉後台、樣式或資料檔。
+
 目前包含：
 
 - 黑底 IG 私密帳風格首頁
