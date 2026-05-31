@@ -11,6 +11,11 @@
 - `admin.html` 靜態後台
 - `data.js` 集中管理資料
 
+## 我的聯絡方式
+
+- FB：`https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr`
+- Plurk：`@Luna_Tuki`
+
 ## 怎麼新增夢角
 
 最方便的方式是打開 `admin.html`：
@@ -41,7 +46,7 @@
 }
 ```
 
-可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`、`moon`、`heart`、`book`、`camera`、`mail`、`link`、`x`、`instagram`、`plurk`、`wavebox`。
+可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`、`moon`、`heart`、`book`、`camera`、`mail`、`link`、`x`、`instagram`、`facebook`、`plurk`、`wavebox`。
 
 也可以在後台上傳自訂 icon。上傳後會存成 `data.js` 裡的 Base64 圖片，不用另外上傳圖片檔。建議使用 512KB 以下的小圖，最好是 PNG、WebP 或 SVG。
 
@@ -73,6 +78,46 @@
 - 說明會顯示在主頁的社群卡片裡。
 - icon 可以在後台下拉選單修改。
 - 也可以上傳自訂 icon；自訂圖會優先於下拉選單 icon 顯示。
+
+目前預設聯絡方式：
+
+- Facebook：`https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr`
+- Plurk：`@Luna_Tuki`，網址是 `https://www.plurk.com/Luna_Tuki`
+
+## 怎麼匯入到自己的 GitHub
+
+如果你想把這份模板放到另一個 GitHub 帳號或新 repository：
+
+1. 下載或解壓縮 `dream-profile-github-pages.zip`。
+2. 登入你自己的 GitHub 帳號。
+3. 建立一個新的 repository，例如 `dream-profile`。
+4. Repository 必須設成 `Public`，免費版 GitHub Pages 才能啟用。
+5. 進入新 repo，按 `Add file` → `Upload files`。
+6. 上傳 zip 解壓後的檔案，不要只上傳 zip 本身。至少要有：
+   - `index.html`
+   - `styles.css`
+   - `script.js`
+   - `data.js`
+   - `admin.html`
+   - `admin.css`
+   - `admin.js`
+   - `README.md`
+7. Commit 後，到 `Settings` → `Pages`。
+8. Source 選 `Deploy from a branch`。
+9. Branch 選 `main`，資料夾選 `/root`。
+10. 儲存後等 1 到 5 分鐘，GitHub 會產生網站網址。
+
+網站首頁會是：
+
+```text
+https://你的帳號.github.io/repo名稱/
+```
+
+後台會是：
+
+```text
+https://你的帳號.github.io/repo名稱/admin.html
+```
 
 ## GitHub Pages 部署到另一個帳號
 

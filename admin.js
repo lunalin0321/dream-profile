@@ -16,6 +16,7 @@ const iconOptions = [
   "link",
   "x",
   "instagram",
+  "facebook",
   "plurk",
   "wavebox",
 ];

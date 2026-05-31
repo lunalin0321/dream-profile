@@ -15,6 +15,7 @@ const iconPaths = {
   link: '<path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1" />',
   x: '<path d="M5 5l14 14M19 5 5 19" />',
   instagram: '<rect x="5" y="5" width="14" height="14" rx="4" /><circle cx="12" cy="12" r="3" /><path d="M16.5 7.5h.01" />',
+  facebook: '<path d="M14 8h3V4h-3a5 5 0 0 0-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9a1 1 0 0 1 1-1Z" />',
   plurk: '<path d="M7 18V6h6a4 4 0 0 1 0 8H7" /><path d="M12 14l5 4" />',
   wavebox: '<path d="M4 12c2.2-4 5.8-4 8 0s5.8 4 8 0" /><path d="M4 17c2.2-4 5.8-4 8 0s5.8 4 8 0" /><path d="M4 7c2.2-4 5.8-4 8 0s5.8 4 8 0" />',
 };
