@@ -15,8 +15,8 @@
 
 有問題請用以下方式聯絡：
 
-- FB：林璐瑤（連結：`https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr`）
-- Plurk：🌙ℒ𝓊𝓃𝒶🌙（連結：`https://www.plurk.com/u/Luna_Tuki`）
+- FB：[林璐瑤](https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr)
+- Plurk：[🌙ℒ𝓊𝓃𝒶🌙](https://www.plurk.com/u/Luna_Tuki)
 
 ## 怎麼新增夢角
 
@@ -83,8 +83,8 @@
 
 目前預設聯絡方式：
 
-- Facebook：林璐瑤，網址是 `https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr`
-- Plurk：🌙ℒ𝓊𝓃𝒶🌙，網址是 `https://www.plurk.com/u/Luna_Tuki`
+- Facebook：[林璐瑤](https://www.facebook.com/share/14gkWpefrFr/?mibextid=wwXIfr)
+- Plurk：[🌙ℒ𝓊𝓃𝒶🌙](https://www.plurk.com/u/Luna_Tuki)
 
 ## 怎麼匯入到自己的 GitHub
 
