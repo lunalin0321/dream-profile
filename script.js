@@ -7,6 +7,16 @@ const iconPaths = {
   star: '<path d="m12 2 2.4 7.6H22l-6.2 4.6 2.4 7.6L12 17.2l-6.2 4.6 2.4-7.6L2 9.6h7.6z" />',
   crown: '<path d="M4 18h16M6 15l-2-9 5 4 3-6 3 6 5-4-2 9z" />',
   feather: '<path d="M20 4C13 4 7 9 6 18c7-1 12-7 12-14Z" /><path d="M6 18 14 10M8 14h5M9 11h4" />',
+  moon: '<path d="M19 15.5A8 8 0 0 1 8.5 5 7 7 0 1 0 19 15.5Z" />',
+  heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />',
+  book: '<path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 0-4-4z" /><path d="M5 4v12M9 8h6M9 12h5" />',
+  camera: '<path d="M5 7h3l2-2h4l2 2h3v12H5z" /><circle cx="12" cy="13" r="3.5" />',
+  mail: '<path d="M4 6h16v12H4zM4 7l8 6 8-6" />',
+  link: '<path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1" /><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1" />',
+  x: '<path d="M5 5l14 14M19 5 5 19" />',
+  instagram: '<rect x="5" y="5" width="14" height="14" rx="4" /><circle cx="12" cy="12" r="3" /><path d="M16.5 7.5h.01" />',
+  plurk: '<path d="M7 18V6h6a4 4 0 0 1 0 8H7" /><path d="M12 14l5 4" />',
+  wavebox: '<path d="M4 12c2.2-4 5.8-4 8 0s5.8 4 8 0" /><path d="M4 17c2.2-4 5.8-4 8 0s5.8 4 8 0" /><path d="M4 7c2.2-4 5.8-4 8 0s5.8 4 8 0" />',
 };
 
 const storageKey = "dream-private-data";
@@ -165,7 +175,7 @@ function renderSocialLinks() {
     .map(
       (link) => `
         <a class="social-card" href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">
-          <span aria-hidden="true">${icon("star")}</span>
+          <span aria-hidden="true">${icon(link.icon)}</span>
           <div>
             <h3>${escapeHtml(link.label)}</h3>
             <p class="handle">${escapeHtml(link.handle)}</p>

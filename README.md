@@ -41,7 +41,7 @@
 }
 ```
 
-可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`。
+可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`、`moon`、`heart`、`book`、`camera`、`mail`、`link`、`x`、`instagram`、`plurk`、`wavebox`。
 
 ## 怎麼改坑單
 
@@ -59,6 +59,7 @@
 - 顯示帳號 / 文字可以寫帳號、匿名留言、委託紀錄等。
 - 網址請填完整連結，像 `https://x.com/your_id`。
 - 說明會顯示在主頁的社群卡片裡。
+- icon 可以在後台下拉選單修改。
 
 ## GitHub Pages 部署到另一個帳號
 

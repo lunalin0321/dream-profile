@@ -1,5 +1,24 @@
 const storageKey = "dream-private-data";
-const iconOptions = ["rose", "anchor", "leaf", "butterfly", "clock", "star", "crown", "feather"];
+const iconOptions = [
+  "rose",
+  "anchor",
+  "leaf",
+  "butterfly",
+  "clock",
+  "star",
+  "crown",
+  "feather",
+  "moon",
+  "heart",
+  "book",
+  "camera",
+  "mail",
+  "link",
+  "x",
+  "instagram",
+  "plurk",
+  "wavebox",
+];
 const form = document.querySelector("[data-admin-form]");
 const pitEditor = document.querySelector("[data-pit-editor]");
 const socialEditor = document.querySelector("[data-social-editor]");
@@ -135,6 +154,10 @@ function renderSocialEditor() {
           <div class="form-grid">
             ${socialField("label", "平台名稱", link.label)}
             ${socialField("handle", "顯示帳號 / 文字", link.handle)}
+            <label>
+              icon
+              ${iconSelect("social", link.icon)}
+            </label>
             <label class="wide">
               網址
               <input data-social-field="url" type="url" value="${escapeAttr(link.url)}" />
@@ -177,9 +200,7 @@ function renderPostEditor() {
             </label>
             <label>
               icon
-              <select data-post-field="icon">
-                ${iconOptions.map((icon) => `<option value="${icon}" ${icon === post.icon ? "selected" : ""}>${icon}</option>`).join("")}
-              </select>
+              ${iconSelect("post", post.icon)}
             </label>
             <label class="wide">
               界線 / 雷點，每行一條
@@ -208,6 +229,14 @@ function socialField(key, label, value) {
   return `<label>${label}<input data-social-field="${key}" type="text" value="${escapeAttr(value)}" /></label>`;
 }
 
+function iconSelect(type, selected) {
+  return `
+    <select data-${type}-field="icon">
+      ${iconOptions.map((icon) => `<option value="${icon}" ${icon === selected ? "selected" : ""}>${icon}</option>`).join("")}
+    </select>
+  `;
+}
+
 function collectEditors() {
   draft.pitList = [...pitEditor.querySelectorAll("[data-pit-index]")].map((card) => ({
     title: card.querySelector('[data-pit-field="title"]').value.trim(),
@@ -219,6 +248,7 @@ function collectEditors() {
     handle: socialValue(card, "handle"),
     url: socialValue(card, "url"),
     note: socialValue(card, "note"),
+    icon: socialValue(card, "icon") || "link",
   }));
 
   draft.posts = [...postEditor.querySelectorAll("[data-post-index]")].map((card) => ({
@@ -285,6 +315,7 @@ function makeSocialLink() {
     handle: "@your_id",
     url: "https://example.com/",
     note: "這裡寫用途或備註。",
+    icon: "link",
   };
 }
 

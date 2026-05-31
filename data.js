@@ -52,24 +52,28 @@ window.DREAM_DATA = {
       handle: "@your_id",
       url: "https://x.com/",
       note: "日常、口嗨、夢向碎念",
+      icon: "x",
     },
     {
       label: "Plurk",
       handle: "your_plurk",
       url: "https://www.plurk.com/",
       note: "長串紀錄與互動",
+      icon: "plurk",
     },
     {
       label: "Wavebox",
       handle: "匿名留言",
       url: "https://wavebox.me/",
       note: "留言、感想、投遞都可以",
+      icon: "wavebox",
     },
     {
       label: "Instagram",
       handle: "@your_ig",
       url: "https://www.instagram.com/",
       note: "圖像整理與限動存放",
+      icon: "instagram",
     },
   ],
   posts: [
