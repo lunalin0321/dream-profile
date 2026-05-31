@@ -52,6 +52,8 @@
 
 可用 icon：`rose`、`anchor`、`leaf`、`butterfly`、`clock`、`star`、`crown`、`feather`、`moon`、`heart`、`book`、`camera`、`mail`、`link`、`x`、`instagram`、`facebook`、`plurk`、`wavebox`。
 
+內建 icon 會以 `512 × 512px` 的 SVG 規格輸出，畫面上仍會依照版面自動縮放。
+
 也可以在後台上傳自訂 icon。上傳後會存成 `data.js` 裡的 Base64 圖片，不用另外上傳圖片檔。README 與後台都會標示限制：圖片尺寸不可超過 `512 × 512px`，檔案大小不可超過 `512KB`，最好是 PNG、WebP 或 SVG。
 
 Profile 區也可以上傳頭像。頭像會存進 `data.js`，不用另外上傳圖片檔；限制是圖片尺寸不可超過 `1024 × 1024px`，檔案大小不可超過 `1MB`。未上傳頭像時，首頁會使用預設圖。

@@ -66,7 +66,7 @@ function escapeHtml(value) {
 }
 
 function icon(name) {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true">${iconPaths[name] || iconPaths.star}</svg>`;
+  return `<svg width="512" height="512" viewBox="0 0 24 24" aria-hidden="true">${iconPaths[name] || iconPaths.star}</svg>`;
 }
 
 function renderIcon(item) {
